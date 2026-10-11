@@ -154,7 +154,7 @@ TEST(KernelEntryValidation, CallableImageRejectsTruncatedVariableTail) {
     const auto child = make_callable<CORE_MAX_TENSOR_ARGS>(nullptr, 0, kBinary, sizeof(kBinary));
     const int32_t child_id = 7;
     const std::vector<uint8_t> children[] = {child};
-    const auto image = make_callable<CoreCallable, CHIP_MAX_TENSOR_ARGS, 1024>(
+    const auto image = make_callable<CoreCallable, CHIP_MAX_TENSOR_ARGS, 2048>(
         nullptr, 0, "orch", kBinary, sizeof(kBinary), &child_id, children, 1, ""
     );
     ASSERT_GT(image.size(), sizeof(ChipCallable));
@@ -166,7 +166,7 @@ TEST(KernelEntryValidation, CallableImageRejectsOutOfRangeChildMetadata) {
     const auto child = make_callable<CORE_MAX_TENSOR_ARGS>(nullptr, 0, kBinary, sizeof(kBinary));
     const int32_t child_id = 7;
     const std::vector<uint8_t> children[] = {child};
-    auto image = make_callable<CoreCallable, CHIP_MAX_TENSOR_ARGS, 1024>(
+    auto image = make_callable<CoreCallable, CHIP_MAX_TENSOR_ARGS, 2048>(
         nullptr, 0, "orch", nullptr, 0, &child_id, children, 1, ""
     );
     auto *callable = reinterpret_cast<ChipCallable *>(image.data());
