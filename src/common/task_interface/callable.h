@@ -108,6 +108,8 @@ static constexpr int CALLABLE_FUNC_NAME_MAX = 64;
 
 template <typename Child, int MaxSig, int MaxChildren>
 struct Callable {
+    static constexpr int MAX_CHILDREN = MaxChildren;
+
     ArgDirection signature_[MaxSig];
     int32_t sig_count_;
     uint32_t binary_size_;
